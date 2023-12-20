@@ -1,0 +1,89 @@
+# Q Feedback
+
+1. Q is slow.
+2. If Q is open you cannot do anything else in intellij. You have to close the Q tab.
+3. Q Tab is unstable saw several Crashes. Had to disable and re-enable to get it to start again.
+    - Emphasis on lots of crashes. Sometimes I have had to restart intellij entirely
+4. Q Chat history is easily lost in a crash or on intellij restart.
+5. Q Text entry gets reformatted --- resulting in bad questions being sent to Q
+6. No way to copy a response from Q
+7. CodeWhisperer suggestions can get in the way of intellisense suggestions
+8. Q responses are underwhelming. Example:
+
+#### Request:
+
+```
+I just ran the command `java --version` and got the following output:
+
+Unrecognized option: --version
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+
+How do I find what version of java is running on this server
+```
+
+#### Response:
+
+```
+Based on the error message you shared, it looks like Java is not installed or properly configured on the server you ran that command on. A few things you could try:
+
+Check if Java is actually installed by looking for a 'java' or 'javac' executable on the system path. You can try running `which java` or `whereis java` depending on your operating system. [1]
+If Java is installed, double check the system PATH variable includes the directory with the Java binaries. On Linux/Mac it would typically be /usr/bin/java.
+Check the server setup documentation or ask the system administrators to verify what version of Java, if any, is supported on that environment.
+As a last resort, if you have access, try installing a new version of Java explicitly using package managers or by downloading/extracting the JDK directly.
+Let me know if any of those suggestions help uncover the Java version or if you have any other questions! Properly setting up the Java environment is important.
+
+Sources
+[1] How to Check Java version - Examples Java Code Geeks - 2023
+examples.javacodegeeks.comcheck-java-version-in-windows-linux-macos
+[2] What does javac -version show?
+stackoverflow.comquestions19783458
+```
+
+Interestingly the links actually have the correct answer, that the correct way to get the java version is to use a single `-` not two:
+```
+java –version
+```
+
+This indicates that it doesn't really use the information it links to.
+
+By comparison here is how the OpenAI's Free ChatGPT (3.5) responded (This is not even the paid tier):
+
+#### Request:
+```
+I just ran the command `java --version` and got the following output:
+
+Unrecognized option: --version
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+
+How do I find what version of java is running on this server
+```
+
+#### Response:
+
+```
+The error you're encountering suggests that the `--version` option is not recognized by the Java Virtual Machine (JVM) you are using. To check the version of Java on your server, you can use the following command without the `--version` option:
+
+
+java -version
+
+
+This command will display information about the version of Java installed on your system. If you're still having issues, it's possible that the `java` command is not in your system's PATH, or there may be an issue with your Java installation.
+
+Additionally, if you have multiple versions of Java installed, you might want to specify the full path to the Java executable. For example:
+
+
+/path/to/java/bin/java -version
+
+
+Replace "/path/to/java" with the actual path where your Java executable is located.
+
+If you're still facing issues or if you have specific requirements for Java version management, consider checking your system's documentation or seeking help from your system administrator.
+```
+
+
+One downside is that there were not sources linked to this response.
+
+9. I have had Q suggest to me that I use features of the aws sdk for java v2 which do not exist. I provided links to release notes that did not work and it provided plausible use cases.
+10. The new codewhisper connection workflow crashed and cleared my aws cli config.
